@@ -30,7 +30,7 @@ public class CustomerInterceptor implements HandlerInterceptor {
 			return true;
 		}
 		else{
-			res.sendRedirect(req.getContextPath()+"/login.jsp");
+			res.sendRedirect(req.getContextPath()+"/index.jsp");
 			System.out.println("拦截器拦截");
 			return false;
 			

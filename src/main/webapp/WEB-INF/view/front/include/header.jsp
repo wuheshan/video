@@ -28,7 +28,7 @@
 		</c:if>
 
 		<a onclick="JavaScript:addFavorite2()"><img src="${pageContext.request.contextPath}/static/img/sc.png" draggable="false">加入收藏</a>
-		<a target="_blank" href="admin/login.do"><img src="${pageContext.request.contextPath}/static/img/we.png" draggable="false">后台管理</a>
+		<a target="_blank" href="/zy_video/loginHouTai.action"><img src="${pageContext.request.contextPath}/static/img/we.png" draggable="false">后台管理</a>
 		<a class="color_e4"><img src="${pageContext.request.contextPath}/static/img/phone.png" draggable="false"> 0371-88888598&#x3000;&#x3000;4006-371-555</a>
 
 	</div>

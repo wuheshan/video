@@ -1,5 +1,7 @@
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 
@@ -50,7 +52,10 @@
 									<span class="count" title="观看次数">
 									<img src="${pageContext.request.contextPath}/static/img/count.png" alt="">${video.videoPlayTimes }</span>
 									<span class="duration" title="视频时长">
-										<img src="${pageContext.request.contextPath}/static/img/player.png" alt="">${video.videoLength}</span>
+										<%-- <img src="${pageContext.request.contextPath}/static/img/player.png" alt="">${video.videoLength}</span> --%>
+										<img src="${pageContext.request.contextPath}/static/img/player.png" alt="">
+										${video.videoLengthstr}
+										</span>
 								</div>
 							</li>
 						</c:forEach>

@@ -30,7 +30,28 @@ public class Video {
     
     
     
-    private String speakerName;
+    
+    private String videoLengthstr;
+    
+    public String getVideoLengthstr() {
+		return videoLengthstr;
+	}
+
+	public void setVideoLengthstr(String videoLengthstr) {
+		
+		this.videoLengthstr = videoLengthstr;
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+
+	private String speakerName;
     /*private String courseName;*/
     
     private Speaker speaker;

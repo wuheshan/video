@@ -27,15 +27,31 @@
 </bean>
 
 <!-- 配置拦截器 -->
-<!-- <mvc:interceptors>
+ <mvc:interceptors>
+ 	<!-- 后台拦截器 -->
 	<mvc:interceptor>
-		<mvc:mapping path="/**"/>
+		<mvc:mapping path="/speaker/**"/>
+		<mvc:mapping path="/course/**"/>
 		
-		拦截放行
+		<!-- 拦截放行 -->
+		<mvc:exclude-mapping path="/loginHouTai.action"/>
 		<mvc:exclude-mapping path="/loginAdmin.action"/>
 		<bean class="com.zhiyou100.zy_video.web.interceptor.CustomerInterceptor"></bean>
 	</mvc:interceptor>
-</mvc:interceptors> -->
+	
+	<!-- 前台拦截器 -->
+	<mvc:interceptor>
+		<mvc:mapping path="/user/**"/>
+		
+		
+		<!-- 拦截放行 -->
+		<mvc:exclude-mapping path="/user/regist.action"/>
+		<mvc:exclude-mapping path="/user/login.action"/>
+		<mvc:exclude-mapping path="/user/forgetpwd.action"/>
+		
+		<bean class="com.zhiyou100.zy_video.web.interceptor.CustomerInterceptor"></bean>
+	</mvc:interceptor>
+</mvc:interceptors> 
  	
  	
  	

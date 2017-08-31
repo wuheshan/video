@@ -53,7 +53,7 @@
 	</nav> -->
 	
 	<!-- 引入公用的导航信息 -->
-	<jsp:include page="/header.jsp">
+	<jsp:include page="/WEB-INF/view/header.jsp">
 		<jsp:param value="course" name="fromJsp"/>
 	</jsp:include>
 	
