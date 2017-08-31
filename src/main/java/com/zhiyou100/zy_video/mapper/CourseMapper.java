@@ -2,6 +2,8 @@ package com.zhiyou100.zy_video.mapper;
 
 import com.zhiyou100.zy_video.model.Course;
 import com.zhiyou100.zy_video.model.CourseExample;
+import com.zhiyou100.zy_video.model.Subject;
+
 import java.util.List;
 import org.apache.ibatis.annotations.Param;
 
@@ -27,4 +29,8 @@ public interface CourseMapper {
     int updateByPrimaryKeySelective(Course record);
 
     int updateByPrimaryKey(Course record);
+
+	List<Course> findAccountCourse();
+
+	List<Course> findSubjectCourseVideo(int subjectId);
 }

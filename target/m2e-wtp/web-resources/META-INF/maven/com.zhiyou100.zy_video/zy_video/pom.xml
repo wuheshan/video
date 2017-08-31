@@ -262,6 +262,15 @@
 				<groupId>org.springframework</groupId>
 				<artifactId>spring-test</artifactId>
 			</dependency>
+			
+			<!-- 发邮件 -->
+			<dependency>
+	 			<groupId>javax.mail</groupId>
+	 			<artifactId>mail</artifactId>
+	 			<version>1.4.7</version> 
+ 			</dependency>
+			
+			
 	 </dependencies>
 		<build>
 		<!--打包src下的xml文件-->

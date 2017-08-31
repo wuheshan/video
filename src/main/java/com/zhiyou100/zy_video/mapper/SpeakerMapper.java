@@ -33,4 +33,8 @@ public interface SpeakerMapper {
 	int findSpeakerCount(@Param("mingCheng")String mingCheng, @Param("zhiWei")String zhiWei);
 
 	List<Speaker> findAllSpeaker(@Param("mingCheng")String mingCheng,  @Param("zhiWei")String zhiWei, @Param("page")Integer page);
+
+	
+
+	Speaker findAllSpeakerVideo(int Speakerid);
 }

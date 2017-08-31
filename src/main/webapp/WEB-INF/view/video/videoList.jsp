@@ -8,6 +8,7 @@
 <html lang="zh-CN">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
 <title>Insert title here</title> 
 
 <meta charset="utf-8">
@@ -18,12 +19,15 @@
 
     <!-- Bootstrap -->
     <link href="${pageContext.request.contextPath }/css/bootstrap.min.css" rel="stylesheet">
+    <link href="${pageContext.request.contextPath}/css/jquery-confirm.css" rel="stylesheet">
 
      <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="${pageContext.request.contextPath }/js/jquery-1.12.4.min.js"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->
     <script src="${pageContext.request.contextPath }/js/bootstrap.min.js"></script>
     
+    <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-confirm.js"></script>
+	
     
     <script type="text/javascript">
     
@@ -34,20 +38,100 @@
     
     function piLiangDelete(){
     	//location.href = "<c:url value = "/deleteBuMen?id="/>${str.d_id}";
-    	var con = confirm("确认删除吗？");
-		alert(con);
     	
-    	document.getElementsByTagName("form")[1].submit()
+    	alert("批量删除");
+		
+    	$.confirm({
+		    title: '警告',
+		    content: '确认删除吗!',
+		    buttons: {
+		        confirm: {
+		        	text:"非常肯定",
+		        
+		        action:	function () {
+		          
+		            $.ajax({
+		            	type:"post",
+		            	dataType:"text",
+		            	url:"${pageContext.request.contextPath}/videoAjaxSomeDelete.action",
+		            	data:{"ids":$("input[name=ids]").val()},
+		            	success:function(msg){
+		            		if(msg=="success"){
+		            			location.reload();
+		            		}
+		            	}
+		            }); 
+		            
+		        }
+		            
+		        },
+		       	 取消: function () {
+		            $.alert('取消!');
+		        },
+		        
+		    }
+		});
+    	
+    	 //document.getElementsByTagName("form")[1].submit()
     	
     }
     
- 
+ 	
+    function ajaxDelete(id){
+    	
+		alert("删除吗");
+		
+		$.confirm({
+		    title: '警告',
+		    content: '确认删除吗!',
+		    buttons: {
+		        confirm: {
+		        	text:"非常肯定",
+		        
+		        action:	function () {
+		          
+		            $.ajax({
+		            	type:"post",
+		            	dataType:"text",
+		            	url:"${pageContext.request.contextPath}/videoAjaxDelete.action",
+		            	data:{"id":id},
+		            	success:function(msg){
+		            		if(msg=="success"){
+		            			location.reload();
+		            		}
+		            	}
+		            }); 
+		            
+		        }
+		            
+		        },
+		       	 取消: function () {
+		            $.alert('取消!');
+		        },
+		        
+		    }
+		});
+    	
+    }
+    
+    
+    
  
 	 var count = 0;
  function chkSon(v){
 	 count = v.checked == true ? ++count: --count;
 	 
-	 $("#dianJiShu").html(count)
+	 
+	 
+	 if( count == $("input[name=ids]").length){
+		 /* $("#chkAll").checked = true; */
+		 $("#chkAll").prop("checked",true);
+	 }else{
+		/*  $("#chkAll").checked = false; */
+		 $("#chkAll").prop("checked",false);
+	 }
+	 
+	 $("#dianJiShu").html(count);
 	
  } 
 
@@ -61,21 +145,25 @@
 		 /* alert(chkstate); */
 			
 		/*  input[type=checkbox] */
-		 var $a = $(":checkbox"); 
-		 $a.each(function(index,domElement){
+		 /* var $a = $(":checkbox");  */
+		 var $a = $("input[name=ids]").prop("checked",chkstate);
+		 /* $a.each(function(index,domElement){
 			 
 			 domElement.checked = chkstate
-		 });
+		 }); */
 		 
-		 count = $a.size()-1;
+		/*  count = $a.size(); */
+		 count = $("input[name=ids]").size();
+		 
 		 if(chkstate==true){
-			 $("#dianJiShu").html(count);
+			/*  $("#dianJiShu").html(count); */
+			count = $("input[name=ids]").size();
 		 }else{
-			 $("#dianJiShu").html('');
+			/*  $("#dianJiShu").html(''); */
 			 count = 0;
 		 };
 		 
-			
+		 $("#dianJiShu").html(count);	
 	 });
  });
  
@@ -86,8 +174,12 @@
 </head>
 <body>
 
+<!-- 引入公用的导航信息 -->
+	<jsp:include page="/header.jsp">
+		<jsp:param value="video" name="fromJsp"/>
+	</jsp:include>
 
-<nav class="navbar navbar-inverse">
+<%-- <nav class="navbar navbar-inverse">
   		<div class="container">
   			 <ul class="nav navbar-nav">
         		
@@ -103,7 +195,7 @@
       </ul>
 
   		</div>
-	</nav>
+	</nav> --%>
    
    
    <div class="container">
@@ -199,15 +291,17 @@
 			  			
 						  <td class="col-md-1">${video.videoTitle}</td>
 						  <td class="col-md-5">${video.videoDescr}</td>
-						  <td class="col-md-1">${video.speakerName}</td>
-						  <td class="col-md-1">${video.courseName}</td>
+						  <td class="col-md-1">${video.speaker.speakerName}</td>
+						  <td class="col-md-1">${video.course.courseName}</td>
 						  <td class="col-md-1">${video.videoLength}</td>
 						  <td class="col-md-1">${video.videoPlayTimes}</td>
 						  
 						  <div class="col-md-1 col-sm-offset-2">
 							  <td><a class="glyphicon glyphicon-pencil" href="<c:url value="/videoUpdate.action?id=${video.id}"/>"></a></td>
-							  <td><a class="glyphicon glyphicon-trash" href="<c:url value="/videoDelete.action?id=${video.id}"/>"></a></td>
+							  <%-- <td><a class="glyphicon glyphicon-trash" href="<c:url value="/videoDelete.action?id=${video.id}"/>"></a></td> --%>
 							  
+							  <td><a class="glyphicon glyphicon-trash" onclick="ajaxDelete(${video.id})" ></a></td>
+							 
 						  </div>
 						  
 					</div>

@@ -1,6 +1,7 @@
 package com.zhiyou100.zy_video.model;
 
 import java.util.Date;
+import java.util.List;
 
 public class Course {
     private Integer id;
@@ -17,9 +18,45 @@ public class Course {
     
     private String subjectName;
     
+    private int avgTimes;
+    
+    private List<Video> video;
+    private Subject subject;
+    
+    
+    
+    
+    public Subject getSubject() {
+		return subject;
+	}
+
+	public void setSubject(Subject subject) {
+		this.subject = subject;
+	}
+
+	public List<Video> getVideo() {
+    	return video;
+    }
+    
+    public void setVideo(List<Video> video) {
+    	this.video = video;
+    }
+   
     
 
-    public String getSubjectName() {
+   
+
+
+
+	public int getAvgTimes() {
+		return avgTimes;
+	}
+
+	public void setAvgTimes(int avgTimes) {
+		this.avgTimes = avgTimes;
+	}
+
+	public String getSubjectName() {
 		return subjectName;
 	}
 
@@ -79,8 +116,31 @@ public class Course {
 	public String toString() {
 		return "Course [id=" + id + ", courseName=" + courseName + ", courseDescr=" + courseDescr + ", insertTime="
 				+ insertTime + ", updateTime=" + updateTime + ", subjectId=" + subjectId + ", subjectName="
-				+ subjectName + "]";
+				+ subjectName + ", avgTimes=" + avgTimes + ", video=" + video + ", subject=" + subject + "]";
 	}
+
+	
+
+	
+    
+    
+    
+    
+    
+
+	/*@Override
+	public String toString() {
+		return "Course [id=" + id + ", courseName=" + courseName + ", courseDescr=" + courseDescr + ", insertTime="
+				+ insertTime + ", updateTime=" + updateTime + ", subjectId=" + subjectId + ", subjectName="
+				+ subjectName + ", avgTimes=" + avgTimes + "]";
+	}*/
+
+	/*@Override
+	public String toString() {
+		return "Course [id=" + id + ", courseName=" + courseName + ", courseDescr=" + courseDescr + ", insertTime="
+				+ insertTime + ", updateTime=" + updateTime + ", subjectId=" + subjectId + ", subjectName="
+				+ subjectName + "]";
+	}*/
 
 	
     

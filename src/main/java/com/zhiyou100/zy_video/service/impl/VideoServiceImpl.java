@@ -1,6 +1,7 @@
 package com.zhiyou100.zy_video.service.impl;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -74,6 +75,7 @@ public class VideoServiceImpl implements VideoService {
 		
 		VideoExample ve = new VideoExample();
 		ve.createCriteria().andIdIn(li);
+		/*ve.createCriteria().andIdIn(Arrays.asList(ids));//这个更简单*/
 		int i = vm.deleteByExample(ve);
 		//System.out.println(i);
 		

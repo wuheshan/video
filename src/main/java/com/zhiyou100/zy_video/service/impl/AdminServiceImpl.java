@@ -24,8 +24,9 @@ public class AdminServiceImpl implements AdminService {
 		AdminExample ae = new AdminExample();
 		String loginName = login_name;
 		
-		byte[] bytes = login_pwd.getBytes();
-		String loginPwd = DigestUtils.md5DigestAsHex(bytes);
+		/*byte[] bytes = login_pwd.getBytes();
+		String loginPwd = DigestUtils.md5DigestAsHex(bytes);*/
+		String loginPwd = login_pwd;
 		
 		ae.createCriteria().andLoginNameEqualTo(loginName).andLoginPwdEqualTo(loginPwd);
 		List<Admin> list = am.selectByExample(ae);
@@ -33,6 +34,22 @@ public class AdminServiceImpl implements AdminService {
 		
 		return admin;
 		
+	}
+
+	@Override
+	public Admin loginAdmin(Admin admin) {
+		AdminExample ae = new AdminExample();
+		String loginName = admin.getLoginName();
+		
+		/*byte[] bytes = login_pwd.getBytes();
+		String loginPwd = DigestUtils.md5DigestAsHex(bytes);*/
+		String loginPwd = admin.getLoginPwd();
+		
+		ae.createCriteria().andLoginNameEqualTo(loginName).andLoginPwdEqualTo(loginPwd);
+		List<Admin> list = am.selectByExample(ae);
+		Admin adm = list.get(0);
+		
+		return adm;
 	}
 	
 	

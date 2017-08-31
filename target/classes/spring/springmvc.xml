@@ -27,15 +27,15 @@
 </bean>
 
 <!-- 配置拦截器 -->
-<mvc:interceptors>
+<!-- <mvc:interceptors>
 	<mvc:interceptor>
 		<mvc:mapping path="/**"/>
 		
-		<!-- 拦截放行 -->
+		拦截放行
 		<mvc:exclude-mapping path="/loginAdmin.action"/>
 		<bean class="com.zhiyou100.zy_video.web.interceptor.CustomerInterceptor"></bean>
 	</mvc:interceptor>
-</mvc:interceptors>
+</mvc:interceptors> -->
  	
  	
  	

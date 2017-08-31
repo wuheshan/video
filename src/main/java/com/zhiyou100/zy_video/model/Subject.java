@@ -1,11 +1,14 @@
 package com.zhiyou100.zy_video.model;
 
+import java.util.List;
+
 public class Subject {
     private Integer id;
 
     private String subjectName;
+    
 
-    public Integer getId() {
+	public Integer getId() {
         return id;
     }
 
@@ -25,5 +28,15 @@ public class Subject {
 	public String toString() {
 		return "Subject [id=" + id + ", subjectName=" + subjectName + "]";
 	}
+
+	
+
+	
+
+	
+    
+    
+    
+    
     
 }

@@ -52,7 +52,7 @@
     				 },
     				 login_rpwd:{
     					 required:true,
-    					 equalTo:"[name=login_pwd]"
+    					 equalTo:"[name=loginPwd]"
     				 }
     			 },
     			 messages:{
@@ -87,13 +87,13 @@
 		  <div class="form-group">
 		    <!--<label for="inputEmail3" class="col-sm-4 control-label">用户名</label>-->
 		    <div class="col-sm-10">
-		      <input type="text" class="form-control" id="inputEmail3" name="login_name" placeholder="请输入用户名">
+		      <input type="text" class="form-control" id="inputEmail3" name="loginName" placeholder="请输入用户名">
 		    </div>
 		  </div>
 		  <div class="form-group">
 		    <!--<label for="inputPassword3" class="col-sm-4 control-label">密码</label>-->
 		    <div class="col-sm-10">
-		      <input type="password" class="form-control" id="inputPassword3" name="login_pwd" placeholder="请输入密码">
+		      <input type="password" class="form-control" id="inputPassword3" name="loginPwd" placeholder="请输入密码">
 		    </div>
 		    <!-- <p style=" color: red;font-size: 15px;"></p> -->
 		  </div>

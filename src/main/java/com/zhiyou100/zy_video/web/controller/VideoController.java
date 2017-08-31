@@ -11,6 +11,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.zhiyou100.zy_video.mapper.VideoMapper;
 import com.zhiyou100.zy_video.model.Admin;
@@ -155,24 +156,94 @@ public class VideoController {
 	}
 	
 	
+	
+	
+	
+	
+	@RequestMapping("/videoAjaxDelete.action")
+	@ResponseBody
+	public String videoAjaxDelete(int id){
+		
+		System.out.println(id);
+		
+		
+		//vm.someVideosDelete(ids);
+		vm.videoDelete(id); 
+		
+		return "success";
+		//return "forward:/videoList.action";
+		
+	}
+	
+	
+	
+	@RequestMapping("/videoAjaxSomeDelete.action")
+	@ResponseBody
+	public String videoAjaxSomeDelete(Integer[] ids){
+		
+		//System.out.println(ids);
+		
+		
+		vm.someVideosDelete(ids);
+		
+		
+		return "success";
+		//return "forward:/videoList.action";
+		
+	}
+	
+	
 	@RequestMapping("/accountList.action")
 	public String account(Model m){
 		
 		//System.out.println(11111);
-		List<Course> allCourse = cs.findAllCourse();
+		/*List<Course> allCourse = cs.findAllCourse();*/
 		
-		List<String> li = new ArrayList();
-		for(Course c:allCourse){
+		List<Course> allCourse = cs.findAccountCourse();
+		
+		//System.out.println(allCourse);
+		
+		StringBuffer dataBuffer = new StringBuffer();
+		StringBuffer timeBuffer = new StringBuffer();
+		
+		for(int i=0;i<allCourse.size();i++){
+			Course c = allCourse.get(i);
 			
+			/*if(i==0){
+				dataBuffer.append("[");
+				timeBuffer.append("[");
+			}*/
+			dataBuffer.append(c.getCourseName());
+			timeBuffer.append(c.getAvgTimes());
 			
-		li.add(c.getCourseName());
+			if(i != allCourse.size() -1 ){
+				dataBuffer.append(",");
+				timeBuffer.append(",");
+			}
 			
+			/*if(i==allCourse.size()-1){
+				dataBuffer.append("]");
+				timeBuffer.append("]");
+			}*/
+			
+			m.addAttribute("data", dataBuffer.toString());
+			m.addAttribute("times", timeBuffer.toString());
 		}
-		System.out.println(li.toString());
-		m.addAttribute("data", li.toString());
 		
-		return "forward:/WEB-INF/view/account/videoAccount2.jsp";
+		
+		return "forward:/WEB-INF/view/account/videoAccount3.jsp";
+		
+		
+		
+		
+		
+		
 		
 	}
+	
+	
+	
+	
+	
 	
 }

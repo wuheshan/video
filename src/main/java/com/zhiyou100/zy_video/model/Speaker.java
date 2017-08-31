@@ -1,6 +1,7 @@
 package com.zhiyou100.zy_video.model;
 
 import java.util.Date;
+import java.util.List;
 
 public class Speaker {
     private Integer id;
@@ -16,8 +17,23 @@ public class Speaker {
     private Date insertTime;
 
     private Date updateTime;
+    
+    
+    private List<Video> video;
+    
+    
+    
+    
 
-    public Integer getId() {
+    public List<Video> getVideo() {
+		return video;
+	}
+
+	public void setVideos(List<Video> video) {
+		this.video = video;
+	}
+
+	public Integer getId() {
         return id;
     }
 
@@ -77,7 +93,16 @@ public class Speaker {
 	public String toString() {
 		return "Speaker [id=" + id + ", speakerName=" + speakerName + ", speakerJob=" + speakerJob + ", speakerHeadUrl="
 				+ speakerHeadUrl + ", speakerDescr=" + speakerDescr + ", insertTime=" + insertTime + ", updateTime="
-				+ updateTime + "]";
+				+ updateTime + ", videos=" + video + "]";
 	}
+
+	/*@Override
+	public String toString() {
+		return "Speaker [id=" + id + ", speakerName=" + speakerName + ", speakerJob=" + speakerJob + ", speakerHeadUrl="
+				+ speakerHeadUrl + ", speakerDescr=" + speakerDescr + ", insertTime=" + insertTime + ", updateTime="
+				+ updateTime + "]";
+	}*/
+    
+    
     
 }

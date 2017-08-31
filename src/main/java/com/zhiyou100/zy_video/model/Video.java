@@ -2,6 +2,8 @@ package com.zhiyou100.zy_video.model;
 
 import java.util.Date;
 
+
+
 public class Video {
     private Integer id;
 
@@ -29,24 +31,46 @@ public class Video {
     
     
     private String speakerName;
-    private String courseName;
+    /*private String courseName;*/
+    
+    private Speaker speaker;
+    
+    private Course course;
+    
+    
     
     
 
-    public String getSpeakerName() {
+   public String getSpeakerName() {
 		return speakerName;
 	}
 
 	public void setSpeakerName(String speakerName) {
 		this.speakerName = speakerName;
 	}
-
+	 /*
 	public String getCourseName() {
 		return courseName;
 	}
 
 	public void setCourseName(String courseName) {
 		this.courseName = courseName;
+	}*/
+
+	public Speaker getSpeaker() {
+		return speaker;
+	}
+
+	public void setSpeaker(Speaker speaker) {
+		this.speaker = speaker;
+	}
+
+	public Course getCourse() {
+		return course;
+	}
+
+	public void setCourse(Course course) {
+		this.course = course;
 	}
 
 	public Integer getId() {
@@ -142,9 +166,19 @@ public class Video {
 		return "Video [id=" + id + ", videoTitle=" + videoTitle + ", speakerId=" + speakerId + ", courseId=" + courseId
 				+ ", videoLength=" + videoLength + ", videoImageUrl=" + videoImageUrl + ", videoUrl=" + videoUrl
 				+ ", videoDescr=" + videoDescr + ", insertTime=" + insertTime + ", updateTime=" + updateTime
+				+ ", videoPlayTimes=" + videoPlayTimes + ", speaker=" + speaker + ", course=" + course + "]";
+	}
+
+	/*@Override
+	public String toString() {
+		return "Video [id=" + id + ", videoTitle=" + videoTitle + ", speakerId=" + speakerId + ", courseId=" + courseId
+				+ ", videoLength=" + videoLength + ", videoImageUrl=" + videoImageUrl + ", videoUrl=" + videoUrl
+				+ ", videoDescr=" + videoDescr + ", insertTime=" + insertTime + ", updateTime=" + updateTime
 				+ ", videoPlayTimes=" + videoPlayTimes + ", speakerName=" + speakerName + ", courseName=" + courseName
 				+ "]";
-	}
+	}*/
+    
+    
     
     
     

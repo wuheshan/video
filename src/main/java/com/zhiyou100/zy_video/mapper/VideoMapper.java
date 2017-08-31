@@ -1,5 +1,6 @@
 package com.zhiyou100.zy_video.mapper;
 
+import com.zhiyou100.zy_video.model.Speaker;
 import com.zhiyou100.zy_video.model.Video;
 import com.zhiyou100.zy_video.model.VideoExample;
 import java.util.List;
@@ -33,4 +34,10 @@ public interface VideoMapper {
 	List<Video> findAllVideo(@Param("shiPinMing")String shiPinMing, @Param("zhuJiangRen")String zhuJiangRen, @Param("keCheng")String keCheng, @Param("page")Integer page);
 
 	Video selectVideoByPrimaryKey(Integer id);
+
+	Video findVideoSpeakerById(Integer videoId);
+
+	/*List<Video> findAllVideoSpeaker();
+
+	Speaker findAllSpeakerVideo();*/
 }

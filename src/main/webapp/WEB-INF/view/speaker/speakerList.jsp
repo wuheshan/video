@@ -33,7 +33,7 @@
 </head>
 <body>
 
-<nav class="navbar navbar-inverse">
+<!-- <nav class="navbar navbar-inverse">
   		<div class="container">
   			 <ul class="nav navbar-nav">
         		
@@ -49,7 +49,12 @@
       </ul>
 
   		</div>
-	</nav>
+	</nav> -->
+	
+	<!-- 引入公用的导航信息 -->
+	<jsp:include page="/header.jsp">
+		<jsp:param value="speaker" name="fromJsp"/>
+	</jsp:include>
    
    <div class="container">
    	

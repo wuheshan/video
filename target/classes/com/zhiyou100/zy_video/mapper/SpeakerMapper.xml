@@ -9,6 +9,31 @@
     <result column="speaker_descr" property="speakerDescr" jdbcType="VARCHAR" />
     <result column="insert_time" property="insertTime" jdbcType="TIMESTAMP" />
     <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+    <collection property="video" ofType="Video">
+	    		<id column="v_id" property="id" jdbcType="INTEGER" />
+			    <result column="video_title" property="videoTitle" jdbcType="VARCHAR" />
+			    <result column="speaker_id" property="speakerId" jdbcType="INTEGER" />
+			    <result column="course_id" property="courseId" jdbcType="INTEGER" />
+			    <result column="video_length" property="videoLength" jdbcType="INTEGER" />
+			    <result column="video_image_url" property="videoImageUrl" jdbcType="VARCHAR" />
+			    <result column="video_url" property="videoUrl" jdbcType="VARCHAR" />
+			    <result column="video_descr" property="videoDescr" jdbcType="VARCHAR" />
+			    <result column="insert_time" property="insertTime" jdbcType="TIMESTAMP" />
+			    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+			    <result column="video_play_times" property="videoPlayTimes" jdbcType="INTEGER" />
+	    	
+	 </collection>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
   </resultMap>
   <sql id="Example_Where_Clause" >
     <where >
@@ -294,5 +319,21 @@
   limit #{page},10
   
   </select>
+  
+  
+  
+  
+  
+  
+  
+  
+  <select id="findAllSpeakerVideo" parameterType="Integer" resultMap="BaseResultMap">
+  	<!-- SELECT v.*,s.* FROM video v,speaker s WHERE v.speaker_id = s.id and s.id = #{0} -->
+  	
+  	SELECT s.*,v.* FROM video v,speaker s WHERE v.speaker_id = s.id and s.id = #{0}
+  
+  </select>
+  
+  
   
 </mapper>

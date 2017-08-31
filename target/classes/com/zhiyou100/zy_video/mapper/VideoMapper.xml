@@ -15,10 +15,28 @@
     <result column="video_play_times" property="videoPlayTimes" jdbcType="INTEGER" />
     
     
+    <association property="speaker" javaType="com.zhiyou100.zy_video.model.Speaker">
+    	<result column="id1" property="id" jdbcType="INTEGER" />
+    	<result column="speaker_name" property="speakerName"/>
+    	<result column="speaker_job" property="speakerJob" jdbcType="VARCHAR" />
+	    <result column="speaker_head_url" property="speakerHeadUrl" jdbcType="VARCHAR" />
+	    <result column="speaker_descr" property="speakerDescr" jdbcType="VARCHAR" />
+	    <result column="insert_time" property="insertTime" jdbcType="TIMESTAMP" />
+	    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" /> 
+    </association>
+    <association property="course" javaType="com.zhiyou100.zy_video.model.Course">
+    	<result column="id2" property="id" jdbcType="INTEGER" />
+    	<result column="course_name" property="courseName"/>
+    	<result column="course_descr" property="courseDescr" jdbcType="VARCHAR" />
+	    <result column="insert_time" property="insertTime" jdbcType="TIMESTAMP" />
+	    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+	    <result column="subject_id" property="subjectId" jdbcType="INTEGER" />
+	    <result column="video_play_times" property="avgTimes" jdbcType="INTEGER" /> 
+    </association>
     
     
-    <result column="speaker_name" property="speakerName" jdbcType="VARCHAR" />
-    <result column="course_name" property="courseName" jdbcType="VARCHAR" />
+   <!--  <result column="speaker_name" property="speakerName" jdbcType="VARCHAR" />
+    <result column="course_name" property="courseName" jdbcType="VARCHAR" /> -->
     
   </resultMap>
   <sql id="Example_Where_Clause" >
@@ -406,4 +424,25 @@
   
   
   </select>
+  
+  
+  
+  
+  
+  
+  
+  
+  <select id="findVideoSpeakerById" parameterType="Integer" resultMap="BaseResultMap">
+  	SELECT v.*,s.*,c.*,s.id id1,c.id id2 FROM video v,speaker s,course c WHERE v.speaker_id = s.id  AND v.course_id = c.id AND v.id = #{videoId} 
+  
+  </select>
+  
+  
+  
+  <!--  <select id="findAllVideoSpeaker" resultMap="BaseResultMap" >
+  	SELECT v.*,speaker_name speakerName FROM video v,speaker s WHERE v.speaker_id = s.id 
+  
+  </select> -->
+  
+  
 </mapper>

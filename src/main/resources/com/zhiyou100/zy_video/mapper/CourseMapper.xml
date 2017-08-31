@@ -1,14 +1,35 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.zhiyou100.zy_video.mapper.CourseMapper" >
-  <resultMap id="BaseResultMap" type="com.zhiyou100.zy_video.model.Course" >
+ <resultMap id="BaseResultMap" type="com.zhiyou100.zy_video.model.Course" >
     <id column="id" property="id" jdbcType="INTEGER" />
     <result column="course_name" property="courseName" jdbcType="VARCHAR" />
     <result column="course_descr" property="courseDescr" jdbcType="VARCHAR" />
     <result column="insert_time" property="insertTime" jdbcType="TIMESTAMP" />
     <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
     <result column="subject_id" property="subjectId" jdbcType="INTEGER" />
-  </resultMap>
+    <result column="video_play_times" property="avgTimes" jdbcType="INTEGER" />
+	 <association property="subject" javaType="Subject">
+	 	<result column="sid" property="id" jdbcType="INTEGER" />
+    	<result column="subject_name" property="subjectName" jdbcType="VARCHAR" />
+	 </association>
+	  <collection property="video" ofType="Video">
+	    		<id column="v_id" property="id" jdbcType="INTEGER" />
+			    <result column="video_title" property="videoTitle" jdbcType="VARCHAR" />
+			    <result column="speaker_id" property="speakerId" jdbcType="INTEGER" />
+			    <result column="course_id" property="courseId" jdbcType="INTEGER" />
+			    <result column="video_length" property="videoLength" jdbcType="INTEGER" />
+			    <result column="video_image_url" property="videoImageUrl" jdbcType="VARCHAR" />
+			    <result column="video_url" property="videoUrl" jdbcType="VARCHAR" />
+			    <result column="video_descr" property="videoDescr" jdbcType="VARCHAR" />
+			    <result column="insert_time" property="insertTime" jdbcType="TIMESTAMP" />
+			    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+			    <result column="video_play_times" property="videoPlayTimes" jdbcType="INTEGER" />
+	    	
+	 </collection>
+    
+    
+ </resultMap>
   <sql id="Example_Where_Clause" >
     <where >
       <foreach collection="oredCriteria" item="criteria" separator="or" >
@@ -225,4 +246,49 @@
       subject_id = #{subjectId,jdbcType=INTEGER}
     where id = #{id,jdbcType=INTEGER}
   </update>
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <select id="findAccountCourse" resultMap="BaseResultMap">
+  	select c.id,c.course_name,ROUND(AVG(video_play_times)) avgTimes from course c,video v where c.id = v.course_id GROUP BY v.course_id 
+  
+  </select>
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <select id="findSubjectCourseVideo" parameterType="Integer" resultMap="BaseResultMap">
+  
+  <!-- select * from (subject s INNER JOIN course c on s.id = c.subject_id AND s.id = 1) INNER JOIN video v on c.id = v.course_id -->
+  
+  <!-- select * from (subject s INNER JOIN course c on s.id as s_id = c.subject_id  AND s_id = 1) INNER JOIN video v on c.id as c_id = v.course_id -->
+  
+  <!-- select c.*,subject_name subjectName,v.*,v.id Vid from course c ,subject s,video v
+  
+  where s.id=c.subject_id and c.id=v.course_id and c.subject_id=#{v} -->
+  
+  select c.*,s.*,v.*,v.id v_id from course c ,subject s,video v where s.id=c.subject_id and c.id=v.course_id and c.subject_id = #{subjectId}
+  
+  
+  </select>
+  
+  
+  
+  
+  
 </mapper>

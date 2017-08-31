@@ -16,4 +16,6 @@ public interface CourseService {
 
 	void updateCourse(Course c);
 
+	List<Course> findAccountCourse();
+
 }

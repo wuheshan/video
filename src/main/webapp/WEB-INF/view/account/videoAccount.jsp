@@ -13,7 +13,15 @@
     <div id="main" style="height:400px"></div>
     <!-- ECharts单文件引入 -->
     <script src="http://echarts.baidu.com/build/dist/echarts.js"></script>
+    
+     <link href="${pageContext.request.contextPath }/css/bootstrap.min.css" rel="stylesheet">
+    <script src="${pageContext.request.contextPath }/js/jquery-1.12.4.min.js"></script>
+    <script src="${pageContext.request.contextPath }/js/bootstrap.min.js"></script>
+    <script src="${pageContext.request.contextPath }/js/echarts.js"></script>
+    
+    
     <script type="text/javascript">
+    
         // 路径配置
         require.config({
             paths: {
@@ -28,6 +36,13 @@
                 'echarts/chart/bar' // 使用柱状图就加载bar模块，按需加载
             ],
             function (ec) {
+            	
+            	var theData = "${data}".split(",");
+            	var theTimes = "${times}".split(",");
+            	
+            	
+            	
+            	
                 // 基于准备好的dom，初始化echarts图表
                 var myChart = ec.init(document.getElementById('main')); 
                 
@@ -42,6 +57,9 @@
                         {
                             type : 'category',
                             /* data : ["前端开发与Git入门","每天20分钟轻松入门React","UI基础入门","Python编程零基础入门","轻松进击PHP基础"] */
+                        	 /* data : ["前端开发与Git入门","每天20分钟轻松入门React","UI基础入门","Python编程零基础入门","轻松进击PHP基础"] */
+                        	
+                        	date : theData
                         	
                         }
                     ],
@@ -52,9 +70,10 @@
                     ],
                     series : [
                         {
-                            "name":"销量",
+                            "name":"播放次数",
                             "type":"bar",
-                            "data":[5, 20, 40, 10, 10, 20]
+                            /* "data":[5, 20, 40, 10, 10, 20]  */
+                            "date": theTimes 
                         }
                     ]
                 };
